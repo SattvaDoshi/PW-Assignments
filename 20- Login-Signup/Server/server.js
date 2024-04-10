@@ -7,7 +7,7 @@ const app = express();
 const cookieParser = require("cookie-parser")
 
 app.use(cors({
-    origin:"http://localhost:5500",
+    origin:"http://localhost:8081",
     credentials:true
 }))
 app.use(cookieParser())
@@ -15,7 +15,10 @@ app.use(cookieParser())
 app.use(express.json())
 app.use("/",userRoute)
 
-
+app.post("ping", (req, res) => {
+  res.send("pong")
+}
+);
 
 app.listen(process.env.PORT,async()=>{
   connectDatabase()
